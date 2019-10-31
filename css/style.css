@@ -1,0 +1,96 @@
+:root{
+    --primary-color:#000000;
+    --secondary-color:#ffffff;
+    --primary-font:arial;
+    --primary-sont-size:14px;
+}
+
+.main{
+
+     margin: 0;
+     padding: 0;
+     /* background-color: var(--primary-color); */
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     height: 100vh;
+     width: 98vw;
+}
+
+.profile{
+    margin: 5% 0;
+    font-size: 38px;
+}
+
+.name, .age, .height, .weight{
+    border:1px solid;
+    margin: 4px 0;
+    height: 30px;
+    padding: 4px;
+    width: 100%;
+}
+
+.save-button{
+    margin-top: 10px;
+}
+
+.program-selection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.goal-heading, .plan{
+    text-align: center;
+    font-size: 40px;
+    padding: 5%;
+}
+
+.original-weight, .desired-weight, .basic, .intensive{
+    width: 175px;
+}
+
+.category, .goal{
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    align-content:space-between;
+    height: auto;
+    width: 44vw;
+}
+
+.goal{
+    padding-bottom: 5%;
+}
+
+/* .desired-weight, .original-weight{
+    display: inline;
+} */
+
+.basic, .intensive{
+    display: inline;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+    .main{
+        height: auto;
+        width: 100vw;
+        display: flex;
+        align-items: unset;
+        justify-content: flex-start;
+    }
+    .profile{
+        font-size: 30px;
+        margin: 10px 0;
+    }
+    .name, .age, .height, .weight{
+        margin-top: 10px;
+        height: 30px;
+        width: 100%;
+    }    
+}
+
+ 
