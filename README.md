@@ -37,5 +37,8 @@ Password: 8390646129
 #### +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ![Drag Racing](images/ExerciseDashboard.png)
 
+## Video:
+[MyShapeTime Video](https://drive.google.com/open?id=1XtF2c3Oq9U4VY0kfplF4IYIG-LbppXUk)
+
 ## Visit:
 [MyShapeTime](https://vigilant-newton-b1af74.netlify.com)
