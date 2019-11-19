@@ -9,16 +9,6 @@ body, html {
     background-size: cover;
     background-position: center center;
 }
-/* .name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
-{
-    size: 40px;
-    margin: 5px;
-    height: 30px;
-    border-radius: 10px;
-
-    outline: none;
-    padding-inline-start: 5%;
-} */
 .button
 {
     margin: 8px;
@@ -35,12 +25,10 @@ body, html {
     justify-content: center;
     align-items: center;
     display: flex;
-    /* background-color: aqua; */
     height: 86vh;
     background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg'); */
     background-image: linear-gradient(rgb(119, 206, 233), rgb(70, 81, 233));
 }
 .mainFrame
@@ -78,11 +66,6 @@ body, html {
     display: none;
 }
 
-
-/* .DashboardMainFrame
-{
-
-} */
 .menu
 {
     justify-content: center;
