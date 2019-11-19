@@ -12,46 +12,40 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <!-- Navbar content -->
-    </nav>
-    <div class="main">
+    <div class="mainFrame">
         <div class="session">
             <!-- profile creation form -->
             <form>
                 <div class="font-weight-medium profile"> Profile</div>
                <div>
-                    <input class="name" type="text" placeholder="Name" required/>
+                    <input class="mb-3 name" type="text" placeholder="Name" required/>
                 </div>
                 <div>
-                    <input class="email" type="text" placeholder="Email" required/>
+                    <input class="mb-3 email" type="text" placeholder="Email" required/>
                 </div>
                 <div>
-                    <input class="age" type="text" placeholder="Age" required/>
+                    <input class="mb-3 age" type="text" placeholder="Age" required/>
                 </div>
                 <div>
-                    <input class="height" type="text" placeholder="Height in inch" required/>
+                    <input class="mb-3 height" type="text" placeholder="Height in inch" required/>
                 </div>
                 <div>
-                    <input class="weight" type="text" placeholder="Weight in kg" required />
+                    <input class="mb-3 weight" type="text" placeholder="Weight in kg" required />
                 </div>
                 <div>
-                    <input class="desiredWeight" type="text" placeholder="Desired Weight in kg" required />
+
+                        <input class="mb-3 desiredWeight" type="text" placeholder="Desired Weight in kg" required />
                 </div>
                 <div>
-                    <input class="password" type="password" placeholder="password" required />
+                    <input class="mb-3 password" type="password" placeholder="password" required />
                 </div>
                 <div>
-                    <input class="Re-password" type="password" placeholder="Re-Enter password" required />
+                    <input class="mb-3 Re-password" type="password" placeholder="Re-Enter password" required />
                 </div>
-                <input  class="button" type="button" value="Submit" onclick="uploadData();" />
+                <button type="button" class="btn btn-primary btn-sm" onclick="uploadData()">Submit</button>
             </form>
         </div>
     </div>
-
-    <nav class="navbar navbar-dark bg-dark">
-        <!-- Navbar content -->
-    </nav>
 </body>
 <script src="/js/app.js"></script>
 </html>

@@ -1,6 +1,4 @@
-
-// Creating the class for program logical 
-
+// Creating the class Menu 
 class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
@@ -30,23 +28,25 @@ class Menu{
         if((bmi > 19)&&( bmi < 25)){
             console.log("Normal weight ");   
         }
+        //Returning the calculated bmi to the route folder
+        return bmi
     }
 
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
+
         //calories need for weight loss
         if(this.userData.weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.1 );
-            // console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
+            this.caloriesPerDay = Math.round( bmr * 1.1 );
             console.log("Weight loss " + this.caloriesPerDay);
         }    
+
         //calories need for weight gain 
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.4 );
-            // console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
+            this.caloriesPerDay = Math.round( bmr * 1.4 );
             console.log("Weight gain " + this.caloriesPerDay);     
         }
     }
@@ -60,12 +60,11 @@ class Menu{
         let snacksCalories = 0;
         let lunchCalories = 0;
         let dinnerCalories = 0;
-
         for(let i = 0; i <= max; i++){
             previousRandom.push(i)
         }
 
-        //picking only two dish using for loop 
+        //Picking only two dish using for loop 
         for(let i=0;i<2;i++){
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
             currentRandom = previousRandom[currentRandom];
@@ -76,7 +75,7 @@ class Menu{
             this.menuPerDay.dinner[i] = this.menu.dinner[currentRandom]
         }
 
-        //getting the calorie value 
+        //Getting the calorie value for the dishes  which are picked 
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
@@ -93,8 +92,7 @@ class Menu{
             //if obtained calories is less than required calories call the method again untill it satisfy the condition
             this.calculatingTheRequiredCalories( totalCalorie );        
         }
-
-        //returning the menu chart to route.js
+        //returning the menu chart to route
         return this.menuPerDay
     }
 
@@ -124,13 +122,45 @@ class Menu{
         this.numberOfDayMenuTook++;
         console.log("ifusertook");
         console.log(this.numberOfDayMenuTook);
-        this.userUpdatedWeight = this.userUpdatedWeight - 1.2;
+        this.userUpdatedWeight = Math.round(this.userUpdatedWeight - 1.2);
         console.log("updated user weight " + this.userUpdatedWeight);
         return this.userUpdatedWeight
     }
 }
 
+//Creating the new Class for Exercise
+class Exercise {
+    constructor(bmi){
+        this.bmi = bmi;
+    }
+
+    //Calculating the number of km for running 
+    running(){
+        let runningKm = Math.round(this.bmi * 0.2)
+        return runningKm
+    }
+
+    //Calculating the number of km for cycling
+    cycling(){
+        let cycling = Math.round(this.bmi * 0.3)
+        return cycling
+    }
+
+    //Calculating the number of km for walking
+    walking(){
+        let walking = Math.round(this.bmi * 0.1)
+        return walking
+    }
+
+    //Calculating the number of meter for swimming
+    swimming(){
+        let swimming = Math.round(this.bmi * 0.1)
+        let swimmingMeter = (swimming * 100)
+        return swimmingMeter
+    }
+}
+
 
 //exporting the class Menu to route.js file
-const external = {Menu};
+const external = {Menu,Exercise};
 module.exports = external;

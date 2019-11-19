@@ -20,7 +20,7 @@ mongo.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err,
     const database = db.db("UserData")
     require('./app/routes')(app, database);
     app.listen(port, () => {
-        console.log('connected to db');
+        console.log('Server is ready');
     });
 })
 

@@ -28,61 +28,100 @@
       </li>
     </ul>
   </nav>
-  <div class="mainFrame">
-    <!-- <div class="dayOneMenu">
-      <input type="button" value=" Are You Interested to see Today Menu">
-    </div> -->
+  <div class="DashboardMainFrame">
     <div class="Menu displaying-menu">
-      <div>
-        <h1>Todays Menu</h1>
-      </div>
-      <div>
-        <label><b>Breakfast</b></label>
-        <p id="breakfastData" class="breakfastData">Oat Meals</p>
-      </div>
-      <div>
-        <label><b>Lunch</b></label>
-        <p id="lunchData" class="lunchData">Chicken Breast</p>
-      </div>
-      <div>
-        <label><b>Dinner</b></label>
-        <p id="dinnerData" class="dinnerData">Chapati,Potato</p>
-      </div>
-      <div>
-        <label><b>snacks</b></label>
-        <p id="snacksData" class="snacksData">NUts</p>
-      </div>
-      <div>
-        Egg:<p id="EggCount" class="EggCount">5</p>
-      </div>
+        <h1 class="card-title text-center m-4">Todays Menu</h1>
+        <div class="card-deck">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <h5 class="card-header text-center">Breakfast</h5>
+          <div class="card-body">
+            <h5 class="card-title text-center">Breakfast Menu</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 id="breakfastData" class="breakfastData text-center">Oat Meals</h5>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <h5 class="card-header text-center">Egg-White</h5>
+            <div class="card-body">
+              <h5 class="card-title text-center">Egg Count</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 id="EggCount" class="breakfastData text-center">5</h5>
+            </div>
+          </div>
+
+      <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <h5 class="card-header text-center">Lunch</h5>
+          <div class="card-body">
+            <h5 class="card-title text-center">Lunch Menu</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 id="lunchData" class="text-center breakfastData">Chicken Breast</h5>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+              <h5 class="card-header text-center">Snacks</h5>
+              <div class="card-body">
+                <h5 class="card-title text-center">Snacks Menu</h5>
+                <h5 id="snacksData" class="text-center breakfastData">Nuts</h5>
+              </div>
+            </div>
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <h5 class="card-header text-center">Dinner</h5>
+            <div class="card-body">
+              <h5 class="card-title text-center">Dinner Menu</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 id="dinnerData" class="text-center breakfastData">Chapati,Potato</h5>
+            </div>
+          </div>
+      </div><br>
       <div class="menu">
-        <label><b>Are You Completed Todays Menu?</b></label><br>
-        <input type="button" name="gender" class="yes" value="yes" onclick="display();"> 
-        <input type="button" name="gender" value="no" class="no" onclick= "skippingMenu();"><br> 
+        <label><h5>Are You Completed Todays Menu?</h5></label>
+        <button type="button" class="btn btn-outline-primary yes" onclick="tookMenu()">Yes</button>
+        <button type="button" class="btn btn-outline-primary no" onclick="skippingMenu()">No</button>
       </div>
     </div>
     <!-- Exercise task is optional div element execute only when user skip the menu -->
     <div class="exercise-task">
-      <div>
-        <h1>Today's Exercise</h1>
-      </div>
-      <div>
-        <label><b>Running </b></label>
-        <p id="running" class="running"></p>
-      </div>
-      <div>
-        <label><b>Cycling</b></label>
-        <p id="cycling" class="cycling"></p>
-      </div>
-      <div>
-        <label><b>Squats</b></label>
-        <p id="squats" class="squats"></p>
-      </div>
+        <h1 class="card-title text-center m-4">Today's Exercise</h1>
+        <div class="card-deck m-3">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <h5 class="card-header">Running</h5>
+          <div class="card-body">
+           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 id="running" class="running"></h5>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <h5 class="card-header text-center">Cycling</h5>
+            <div class="card-body">
+              <h5 id="cycling" class="text-center cycling"></h5>
+            </div>
+          </div>
+
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+              <h5 class="card-header text-center">Walking</h5>
+              <div class="card-body">
+                <h5 id="walking" class="text-center walking"></h5>
+              </div>
+            </div>
+
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <h5 class="card-header text-center">Swimming</h5>
+                <div class="card-body">
+                  <h5 id="swimming" class="text-center swimming"></h5>
+                </div>
+              </div>
+        </div>
+      <div class="menu">
+          <label><h5>Are You Completed Todays Exercise?</h5></label> 
+          <button type="button" class="btn btn-outline-primary yes" onclick="tookExercise()">Yes</button>
+        </div>
+
     </div>
   </div>
-  <nav class="navbar navbar-dark bg-dark">
-    <!-- Navbar content -->
-  </nav>
 </body>
 <script src="/js/app.js"></script>
 </html>

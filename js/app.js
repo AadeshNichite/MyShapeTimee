@@ -10,7 +10,9 @@ let desiredWeight;
 let perDayMenu
 let eggQuantity
 let numberOfTimeUserTookMenu = 0;
+let exerciseUserData = {}
 let we;
+
 
 
 // getting the profile data from user and storing those data in global variables
@@ -41,23 +43,20 @@ function uploadData(){
     {
         alert("Fill the data..");    
     }
-
     else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){  
         alert("Please enter a valid Email"); 
     }
-
     else if(!(password[0].value === Repassword[0].value)){
         alert("Password does not matchs"); 
     }
-
     else if ( ((a - b) < 0 ) && ((a -b) >= 10 ) ){
         alert("Enter valid Desired Weight.."); 
     }
 
-    //Passing the user details to the server using the ajax call
+    //Passing the user details to the server using the ajax call with post method
     else{   
         $.ajax({
-             url: 'https://myshapetime.herokuapp.com/add',
+            url: 'https://myshapetime.herokuapp.com/add',
             //url: 'http://localhost:8000/add',
             type: 'POST',
             dataType: 'json',
@@ -71,6 +70,7 @@ function uploadData(){
                 'password':password[0].value
             }
         })
+
         // if ajax call is success then relocating the page to index page
         .done(function(data){
             if(data.msg=="success")
@@ -114,6 +114,7 @@ function checkLogin(){
                 location.replace("/Frontend/Dashboard.html");
                 perDayMenu=data;
                 console.log(perDayMenu);
+                //passing the day menu to function as parameter
                 displayingMenuData(perDayMenu);
             }
             else if(data.msg=="User Does Not Exist")
@@ -129,14 +130,13 @@ function checkLogin(){
     }  
 }
 
-
-
-function display(){
+//function to find how many days the user took the menu 
+function tookMenu(){
     numberOfTimeUserTookMenu++;
     let email=sessionStorage.getItem("email");
     console.log(numberOfTimeUserTookMenu);
 
-    //if user took menu for 7 days then different route 
+    //if user took menu for 7 days then calling the diff route to update the weight
     if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
@@ -158,7 +158,7 @@ function display(){
             displayingMenuData(perDayMenu);
             $.ajax({
                 url: 'https://myshapetime.herokuapp.com/updateWeight',
-                //url: 'http://localhost:8000/updateWeight',
+               //  url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -167,12 +167,14 @@ function display(){
                 }
             })
         });
-    }       
+    }     
+    
+    // else then calling the diff route to get the next day menu
     else{
         console.log("else block");
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/tookmenu',
-            //url: 'http://localhost:8000/tookmenu',
+            //  url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -193,46 +195,95 @@ function display(){
     }
 }
 
-
-function skippingMenu(){
-    $(".displaying-menu").hide();
-    $(".exercise-task").show();
-    displayingExerciseData();
-}
-
+// displaying the day menu to html page
 function displayingMenuData(perDayMenu){
     perDayMenu = perDayMenu
-    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+",";
     let para = document.createElement("breakfastData"); 
     let t = document.createTextNode(perDayMenu.breakfast[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
+    para.appendChild(t);                                          
+    // Append the text to <p>
     document.getElementById("breakfastData").appendChild(para);  
-    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+",";
     para = document.createElement("lunchData"); 
     t = document.createTextNode(perDayMenu.lunch[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
+    para.appendChild(t);                                          
+    // Append the text to <p>
     document.getElementById("lunchData").appendChild(para);  
-    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+",";
     para = document.createElement("dinnerData"); 
     t = document.createTextNode(perDayMenu.dinner[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
+    para.appendChild(t);                                         
+     // Append the text to <p>
     document.getElementById("dinnerData").appendChild(para);  
-    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+",";
     para = document.createElement("snacksData"); 
     t = document.createTextNode(perDayMenu.snacks[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
+    para.appendChild(t);                                          
+    // Append the text to <p>
     document.getElementById("snacksData").appendChild(para);  
     document.getElementById("EggCount").innerHTML=eggQuantity;
 
 }
 
-
-function displayingExerciseData(){
-    document.getElementById("running").innerHTML = "3 Km " 
-    document.getElementById("cycling").innerHTML = "5 Km " 
-    document.getElementById("squats").innerHTML = " 15 X 3 Sets " 
+//If user skipping the menu suggesting some exercise to the user 
+function skippingMenu(){
+    $(".displaying-menu").hide();
+    $(".exercise-task").show();
+    getExerciseData();
 }
 
+//Getting the exercise data from the server based on the user bmi
+function getExerciseData(){
+    $.ajax({
+        url: 'https://myshapetime.herokuapp.com/skipping/menu',
+        // url: 'http://localhost:8000/skipping/menu',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'message' :'skipping'
+        }
+    })
+    .done(function(data){
+        exerciseUserData = data
+        displayingExerciseData(exerciseUserData)
+    })
+}
+
+//Display the exercise data to the client 
+function displayingExerciseData(){
+    console.log(exerciseUserData);
+    document.getElementsByClassName("running")[0].innerHTML = exerciseUserData.runningKm + " Km"
+    document.getElementsByClassName("cycling")[0].innerHTML = exerciseUserData.cyclingKm+ " Km"
+    document.getElementsByClassName("walking")[0].innerHTML = exerciseUserData.walkingKm + " Km"
+    document.getElementsByClassName("swimming")[0].innerHTML = exerciseUserData.swimmingMeter + "Mt"
+}
+
+//creating the ajax call to get the next day menu 
+function tookExercise(){
+    $(".displaying-menu").show();
+    $(".exercise-task").hide();
+    $.ajax({
+        url: 'https://myshapetime.herokuapp.com/tookmenu',
+        //url: 'http://localhost:8000/tookmenu',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'message' :'tookmenu'
+        }
+    })
+    .done(function(data){
+        perDayMenu = data.perDayMenu;                
+        eggQuantity = data.eggQuantity
+        let we = data.updatedWeight
+        console.log(perDayMenu);
+        console.log(eggQuantity);
+        displayingMenuData(perDayMenu)
+        // getting the details with the help of Api and sending those data to client side 
+    });
+}
+
+//Logout function which will clear the localstorage and clear up the memory
 function logout(){
     location.replace("/index.html");
     localStorage.clear();

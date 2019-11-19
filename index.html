@@ -16,28 +16,23 @@
 <body>
     <!-- user login form -->
     <form>
-        <nav class="navbar navbar-dark bg-dark">
-            <!-- Navbar content -->
-        </nav>
-        <div class="main">
-            <div class="session">
-                <div class="font-weight-medium profile">Login</div>
+        <div class="mainFrame">
+            <div class="card session">
+                <div class="font-weight-medium mb-3 profile">LOGIN</div>
+
                 <div>
-                    <input class="email" type="text" placeholder="Email" required/>
+                    <input class="mb-4 email" type="text" placeholder="Email" required/>
                 </div>
                 <div>
-                    <input class="password" type="password" placeholder="password" required/>
+                    <input class="mb-4 password" type="password" placeholder="Password" required/>
                 </div>
                 <div>
-                    <input  class="button" type="button" value="LogIn" onclick="checkLogin();" />
+                    <button type="button" class="btn btn-primary btn-sm" onclick="checkLogin()">LogIn</button>
                     <!-- Adding the hyperlink for creating the profile -->
                     <a href="/Frontend/signup.html" id="link">Creat an Account</a>
                 </div> 
             </div>
         </div>
-        <nav class="navbar navbar-dark bg-dark">
-            <!-- Navbar content -->
-        </nav>
     </form>
 </body>
 <!-- javascript file link -->
